@@ -10,9 +10,11 @@ Eight original working browser-only tools based on common developer tasks;
 not copied from another product's proprietary source or branding.
 **All processing remains entirely in the browser.** No account, API
 credentials, file upload, cookies or analytics are required. On the branded
-site, the two informational homepages offer a **single Adsterra 300×250 banner
-only after affirmative, optional visitor consent** with an equal Decline
-choice. **All 16 tool editors are ad-free**, regardless of consent.
+site, the two informational homepages each offer a **single Adsterra 300×250
+banner only after affirmative, optional visitor consent**, with equal Decline
+access. The separate Batch troubleshooting guide has its **own independent
+opt-in preference**. **All 18 data-processing tool pages are ad-free**, regardless
+of advertising consent on informational pages.
 The GitHub Pages code/demo itself has no ads or tracking.
 
 1. **Regex Tester**: JavaScript patterns and flags, named capture groups,
@@ -53,6 +55,11 @@ Cloudflare site**; it is not an ad-supported GitHub Pages application. **The Bat
 file processing pages themselves contain zero advertising or analytics**, never
 upload file contents, require no account and make no API requests. The separate
 branded EN/KO landing pages retain their optional visitor-consent-only banner.
+Try the complete [English Batch troubleshooting walkthrough](https://devtools.trendbridged.com/guides/reconcile-openai-batch-jsonl/)
+or [한국어 가이드](https://devtools.trendbridged.com/ko/guides/reconcile-openai-batch-jsonl/) for seven practical
+steps, four fictional requests and three downloadable input/output/error JSONL files.
+Only the guides, not the file-processing pages, offer a *separately consented*
+optional ad banner. Declining advertising never restricts the files or matcher.
 No action on this site can confirm an actual OpenAI batch status or current
 Publisher revenue. Follow the [official Batch guide](https://developers.openai.com/api/docs/guides/batch)
 for provider acceptance and job-level status.
@@ -78,10 +85,13 @@ It is not the source of our code.
 - **Branded commercial deployment:** https://devtools.trendbridged.com/ —
   independently approved Adsterra Publisher site ID **6156887**, with one
   approved Active 300×250 banner unit **31964651**. The informational
-  **EN/KO homepage only** offers 'Allow optional ads' and 'Decline ads'
-  with equal access to all tools. No ad request is made before consent
-  (or after Decline). The ad provider and partners may process device
-  and browser data if Allow is selected.
+  **EN/KO homepages** have an Allow/Decline choice. The independent
+  [English](https://devtools.trendbridged.com/guides/reconcile-openai-batch-jsonl/)
+  and [한국어](https://devtools.trendbridged.com/ko/guides/reconcile-openai-batch-jsonl/)
+  Batch troubleshooting guides provide a separate **guide-only** Allow/Decline
+  preference, which does not inherit earlier homepage consent. No third-party
+  ad request occurs before an affirmative choice or after Decline. Provider
+  partners may process device/browser data if Allow is chosen.
 - **16 original tool-editor pages + 2 Batch reconciliation pages:** remain
   completely ad-free and browser-local even after opting in on the homepage.
 - **GitHub Pages code/demo:** free and ad-free, not the commercial hosting
@@ -94,7 +104,8 @@ It is not the source of our code.
 
 The production deployment uses Cloudflare Pages Direct Upload; the original
 source and ad-free demo remain reproducible from this public repository. The
-Cloudflare build adds optional homepage advertising, a separately maintained
+Cloudflare build adds optional advertising only to informational homepages and
+the separate Batch guide under independent consent, plus a maintained
 MIT Batch JSONL result matcher from `extras/`, and the site-specific
 Publisher-approved banner configuration. We do
 not force redirects, incentivize advertising clicks, spoof visits, embed
@@ -127,8 +138,8 @@ domain and publishes its **own branded canonical/hreflang and 20-URL sitemap**
 
 The underlying tool application stores no user processing inputs and
 sends no user data to server endpoints. The separate consent controller on
-the branded informational homepage can store only an Allow/Decline choice
-locally; it does not store pasted tool data. Hosts may process ordinary
+the branded informational homepages and guide can store only their
+respective Allow/Decline choices locally; it does not store pasted tool data. Hosts may process ordinary
 HTTP metadata when serving files. The regex Web Worker is
 terminated after a short deadline; security-critical production
 regex must still be reviewed. JWT claim decoding never verifies

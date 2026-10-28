@@ -1,0 +1,4 @@
+{"custom_id":"fictional-201","method":"POST","url":"/v1/responses","body":{"model":"fictional-demo-not-a-real-model","input":"Invented sample text 1"}}
+{"custom_id":"fictional-202","method":"POST","url":"/v1/responses","body":{"model":"fictional-demo-not-a-real-model","input":"Invented sample text 2"}}
+{"custom_id":"fictional-203","method":"POST","url":"/v1/responses","body":{"model":"fictional-demo-not-a-real-model","input":"Invented sample text 3"}}
+{"custom_id":"fictional-204","method":"POST","url":"/v1/responses","body":{"model":"fictional-demo-not-a-real-model","input":"Invented sample text 4"}}
