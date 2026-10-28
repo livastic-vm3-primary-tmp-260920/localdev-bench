@@ -57,6 +57,18 @@ store it securely, check terminal Batch state and provider charges, and manually
 review before any decision to resubmit. The tool NEVER calls an API or starts
 an automated retry.
 
+**Large local files (up to 220 MiB input, 16 MiB maximum single line):**
+The same [MIT Batch source directory](extras/batch-jsonl-reconcile/) now includes
+[`cli.mjs`](extras/batch-jsonl-reconcile/cli.mjs), a zero-dependency Node.js
+22+ **streaming CLI** for results larger than the web app's 8 MiB / 25k-line
+limit. It exports only line/ID status CSVs and optionally, after a separate
+explicit danger acknowledgment, an original failed-only request JSONL for
+**manual review**, never automatic replay. Review provider Batch status,
+pricing, duplicate cost and original prompt confidentiality before any further
+action. The free large-file CLI and browser processing surfaces remain ad-free;
+the separate informational EN/KO guide offers only a voluntarily consented
+banner, not a forced impression or any paid entitlement.
+
 This add-on is offered on the existing **Adsterra-approved commercial-compatible
 Cloudflare site**; it is not an ad-supported GitHub Pages application. **The Batch
 file processing pages themselves contain zero advertising or analytics**, never
