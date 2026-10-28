@@ -1,4 +1,4 @@
-# LocalDev Bench — 8 core developer tools + free Batch JSONL matcher (EN/한국어)
+# LocalDev Bench — 10 free branded utilities (8 core + Batch matcher + Codex clock)
 
 **Live English (Trendbridge):** https://devtools.trendbridged.com/
 
@@ -13,7 +13,7 @@ credentials, file upload, cookies or analytics are required. On the branded
 site, the two informational homepages each offer a **single Adsterra 300×250
 banner only after affirmative, optional visitor consent**, with equal Decline
 access. The separate Batch troubleshooting guide has its **own independent
-opt-in preference**. **All 18 data-processing tool pages are ad-free**, regardless
+opt-in preference**. **All 20 data-processing tool pages are ad-free**, regardless
 of advertising consent on informational pages.
 The GitHub Pages code/demo itself has no ads or tracking.
 
@@ -75,6 +75,26 @@ Every utility has an independent real EN/KO page, use-case explanation,
 multiple genuine limitations, three FAQ answers, unique title/description,
 canonical and hreflang. Original front-end HTML/CSS, no copycat scraping.
 
+## Free recurring-use Codex reset countdown (also ad-free)
+
+**[English live clock](https://devtools.trendbridged.com/codex-limit-clock/)** ·
+**[한국어 실시간 계산기](https://devtools.trendbridged.com/ko/codex-limit-clock/)** ·
+[Separate original MIT source + 11 real tests](https://github.com/livastic-vm3-primary-tmp-260920/codex-reset-clock)
+
+The new, bilingual 10th branded utility helps people who use Codex regularly
+check **their own manually entered** 5-hour/weekly allowance refresh times
+and banked reset expiry, count down locally, convert zones, optionally store
+chosen dates in their own browser and download .ics calendar reminders. It
+never connects to a ChatGPT/OpenAI account or claims to know an account's
+actual limits, automatically redeem a reset or predict global eligibility.
+
+Both Codex calculator workspaces are **entirely ad-free**, like the 18 existing
+file-processing workspaces. Only the separate branded informational homepages
+and optional Batch guide can show one owner-approved Adsterra banner **after
+an explicit, independently revocable choice**. The separate GitHub Pages
+educational copy remains ad-free and transparently links to the main free
+branded clock without forcing visitors through an advertiser.
+
 ## Traffic and revenue honesty
 
 A competitor's popularity proves that a broad task exists; it does
@@ -99,8 +119,9 @@ It is not the source of our code.
   preference, which does not inherit earlier homepage consent. No third-party
   ad request occurs before an affirmative choice or after Decline. Provider
   partners may process device/browser data if Allow is chosen.
-- **16 original tool-editor pages + 2 Batch reconciliation pages:** remain
-  completely ad-free and browser-local even after opting in on the homepage.
+- **16 original tool-editor pages + 2 Batch reconciliation pages + 2 Codex
+  reset clocks:** all 20 processing screens remain completely ad-free and
+  browser-local even after opting in on an informational homepage.
 - **GitHub Pages code/demo:** free and ad-free, not the commercial hosting
   for the approved Publisher site. The repository's canonical homepage
   and intended entry point is the branded Trendbridge host.
@@ -113,7 +134,8 @@ The production deployment uses Cloudflare Pages Direct Upload; the original
 source and ad-free demo remain reproducible from this public repository. The
 Cloudflare build adds optional advertising only to informational homepages and
 the separate Batch guide under independent consent, plus a maintained
-MIT Batch JSONL result matcher from `extras/`, and the site-specific
+MIT Batch JSONL result matcher from `extras/`, a separate MIT Codex Limit
+Clock from its independent source repository, and the site-specific
 Publisher-approved banner configuration. We do
 not force redirects, incentivize advertising clicks, spoof visits, embed
 ads in token inspection or file editors, or fabricate search traffic.
@@ -140,8 +162,9 @@ Regex sandbox: docs/assets/regex-worker.mjs
 Bilingual 18 source/demo pages and sitemap in docs/. GitHub Pages is
 published from main:/docs as an **ad-free source demo** with HTTPS.
 The independent commercial Cloudflare Pages deployment uses the branded
-domain and publishes its **own branded canonical/hreflang and 20-URL sitemap**
-(18 original pages plus two standalone Batch result reconciliation pages).
+domain and publishes its **own branded canonical/hreflang and 24-URL sitemap**
+(18 original pages + two Batch processing pages + two Batch how-to guides
++ two recurring-use Codex clock workspaces).
 
 The underlying tool application stores no user processing inputs and
 sends no user data to server endpoints. The separate consent controller on
