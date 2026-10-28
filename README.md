@@ -59,6 +59,9 @@ an automated retry.
 
 **Large local files (up to 220 MiB input, 16 MiB maximum single line):**
 The same [MIT Batch source directory](extras/batch-jsonl-reconcile/) now includes
+[a tested one-click 17 KB ZIP download](https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench/releases/tag/batch-jsonl-cli-v1.0.0)
+with English/한국어 instructions, fictional examples, the MIT license and
+13 CLI tests (real public release SHA256 verified). It also has
 [`cli.mjs`](extras/batch-jsonl-reconcile/cli.mjs), a zero-dependency Node.js
 22+ **streaming CLI** for results larger than the web app's 8 MiB / 25k-line
 limit. It exports only line/ID status CSVs and optionally, after a separate

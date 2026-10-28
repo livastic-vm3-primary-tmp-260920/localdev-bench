@@ -26,6 +26,13 @@ per-line memory and retains only request IDs / line references—not prompts or
 provider response bodies—in the report data structures. Files never leave the
 user's computer; no OpenAI, Adsterra, tracking or other network calls occur.
 
+**One-click public ZIP:** [Download the free 17 KB Batch JSONL streaming CLI v1.0.0](https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench/releases/download/batch-jsonl-cli-v1.0.0/localdev-batch-jsonl-cli-v1.0.0-20261028.zip).
+SHA-256: `6b6be3cdfb8b041ce99ac247b48d74105ac5ef18f984e82bdaaa5a2a2f55107f`.
+This archive includes `cli.mjs`, `core.mjs`, English/한국어 instructions,
+MIT license, three fictional JSONL files and 13 runnable tests. It requires
+Node.js 22+ but **no npm install**. The public GitHub Release asset was
+actually downloaded and verified byte-identical to this source build.
+
 With the [MIT source repository](https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench)
 cloned locally, run the following (replace paths with files downloaded from
 *your own* completed or interrupted Batch operation):
