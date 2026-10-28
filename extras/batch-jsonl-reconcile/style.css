@@ -39,3 +39,14 @@
 .batch-preview-note{color:var(--muted);font-size:.85rem}
 @media(max-width:900px){.batch-three{grid-template-columns:1fr}.batch-field small{min-height:auto}.batch-field textarea{min-height:105px}}
 @media(max-width:620px){.batch-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.batch-details{grid-template-columns:1fr}.batch-panel{padding:16px}.batch-actions button{flex:1 1 140px}.batch-field{padding:12px}}
+
+/* Explicit, independent manual review gate for failed-request JSONL export. */
+.batch-retry{margin:27px 0 7px;border:1px solid #6b9283;background:#132f2c;border-radius:12px;padding:22px}
+.batch-retry h3{margin:0 0 9px;font-size:1.17rem;color:var(--lime)}
+.batch-retry p{margin:0 0 12px;color:#d6e9e2;line-height:1.85}
+.batch-retry .warning{font-size:.91rem;color:#ffe3bd}
+.batch-retry label{display:flex;gap:10px;align-items:flex-start;line-height:1.75;font-weight:700;margin:18px 0;cursor:pointer}
+.batch-retry input[type=checkbox]{width:22px;height:22px;min-width:22px;accent-color:var(--lime);margin-top:3px;cursor:pointer}
+.batch-retry button{padding:12px 20px;border:1px solid #9fcab8;border-radius:9px;background:#204d42;color:#f1f7f3;font-weight:830;min-height:44px}
+.batch-retry button:disabled{opacity:.46;cursor:not-allowed}
+.batch-retry #retry-count{font-weight:800;color:var(--lime)}

@@ -49,6 +49,13 @@ standalone **browser-local Batch JSONL Result Matcher** joins the original input
 output and error JSONL files by their exact `custom_id` value, catches missing,
 duplicate, unexpected and failed records, and downloads local CSV reviews with
 line numbers. The example demonstrates two successes out of order and one error.
+It also offers a **separately acknowledged local-only JSONL export of explicitly
+failed original requests for manual review**. Missing, successful, duplicate,
+unknown and structurally ambiguous rows are never assumed safe for retry.
+The optional failed-only download contains original request bodies and prompts:
+store it securely, check terminal Batch state and provider charges, and manually
+review before any decision to resubmit. The tool NEVER calls an API or starts
+an automated retry.
 
 This add-on is offered on the existing **Adsterra-approved commercial-compatible
 Cloudflare site**; it is not an ad-supported GitHub Pages application. **The Batch

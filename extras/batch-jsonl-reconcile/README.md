@@ -14,7 +14,7 @@ advertising preference; the matcher itself has **no ads or data upload**.
 
 OpenAI Batch output rows can arrive out of order and failures can appear in a separate `error_file_id` download. The matcher reads your original input JSONL, success output JSONL and error JSONL in your browser, matches records by **exact `custom_id`**, and creates a CSV review listing succeeded, failed, not-found, duplicate and unexpected IDs plus line numbers. It does not assume result row order. It accepts up to 8 MiB / 25,000 lines per file, versus the larger limits in the actual Batch API.
 
-The tool is independent from OpenAI and **does not connect to OpenAI's API**, know your Batch job status, or check whether you downloaded all result files. **Not-found means absent from the provided files**, not guaranteed unprocessed. It does not certify model outputs, billing, API acceptance or complete downloads. The examples are entirely fictional, and production API keys should never be entered. It displays and exports no input prompt or response body. CSV exports quote cells and neutralize spreadsheet formula injection in IDs.
+The tool is independent from OpenAI and **does not connect to OpenAI's API**, know your Batch job status, or check whether you downloaded all result files. **Not-found means absent from the provided files**, not guaranteed unprocessed. It does not certify model outputs, billing, API acceptance or complete downloads. The examples are entirely fictional, and production API keys should never be entered. The standard status and issues CSV reports display and export **no** input prompt or response body. An **additional, explicitly acknowledged manual failed-request JSONL download** is different: it intentionally preserves the full original request line, including any prompts and sensitive data, **only in a locally downloaded file**. The tool never uploads this file or calls an API. It excludes successes, unobserved/missing, duplicate and unknown results. Users must independently confirm terminal provider Batch state, failure causes, possible charges and duplicate execution risk before taking any manual retry action. CSV exports quote cells and neutralize spreadsheet formula injection in IDs.
 
 The hosted two-language utility uses local CSS and ES modules only with restrictive `Content-Security-Policy` (`connect-src 'none'` and `form-action 'none'`). File content is never transmitted, persisted or used for tracking. This route has **no advertisement scripts**. The separate informational homepages and the Batch guide can show an optional
 independently consented Adsterra banner, while all processing workspaces are
@@ -26,13 +26,14 @@ Source files:
 - `app.mjs`: event-driven file/paste UI logic. The published bundle changes its import from `./core.mjs` to `./batch-reconcile-core.mjs` without modifying source behavior.
 - `style.css`: local responsive utility styles.
 - `core.test.mjs`: unit tests for matching, errors, privacy and CSV sanitization.
+- `manual-retry.test.mjs`: eight tests for failed-only manual export, duplicates, missing/unknown, invalid input and sensitive Unicode.
 - `examples/`: three fully fictional input/output/error JSONL files. No valid model,
   API token or real personal information is included; do not submit as live jobs.
 
 Run the logic suite locally using Node.js 22+:
 
 ```sh
-node --test extras/batch-jsonl-reconcile/core.test.mjs
+node --test extras/batch-jsonl-reconcile/core.test.mjs extras/batch-jsonl-reconcile/manual-retry.test.mjs
 ```
 
 Official reference: https://developers.openai.com/api/docs/guides/batch .

@@ -144,6 +144,60 @@ export function reconcileBatch(inputText,outputText,errorText) {
   };
 }
 
+/**
+ * A file can be missing because the Batch job is unfinished or because the
+ * user forgot to download its error file. NEVER infer a retry from a missing
+ * or ambiguous record. Only uniquely matched explicit provider/HTTP failures
+ * may become *manual review* candidates, never an automatic API submission.
+ */
+export function retryCandidateCount(report) {
+  if (!isObj(report) || !Array.isArray(report.rows) ||
+      !Array.isArray(report.issues) || report.issues.length>0 ||
+      !Number.isInteger(report.inputRecords) || report.inputRecords<1) return 0;
+  return report.rows.filter(r=>isObj(r) &&
+    (r.status==='provider-error' || r.status==='http-error') &&
+    typeof r.customId==='string' && Number.isInteger(r.inputLine) && r.inputLine>=1).length;
+}
+
+/**
+ * Make an OFFLINE export of original request rows for explicitly failed IDs.
+ * This preserves user prompts and all original request fields in the downloaded
+ * file on the *user's device*, not in any report/analytics/remote service.
+ * It cannot verify terminal Batch status or whether manual retries are safe.
+ * Always gate invocation behind an affirmative warning acknowledgment in UI.
+ */
+export function buildManualFailureRetryJsonl(inputText, report) {
+  if(typeof inputText!=='string' || byteCount(inputText)>MAX_BYTES)
+    throw new Error('Input exceeds 8 MiB; cannot build a local retry review file.');
+  if(!isObj(report)||!Array.isArray(report.rows)||!Array.isArray(report.issues)||
+     report.issues.length>0)
+    throw new Error('Resolve all structural and mapping issues before exporting failed requests.');
+  const selected=report.rows.filter(r=>r.status==='provider-error' || r.status==='http-error');
+  if(selected.length===0)throw new Error('No explicitly failed requests were matched. Missing or unknown results are never eligible.');
+  const sourceLines=inputText.replace(/\r\n/g,'\n').split('\n');
+  if(sourceLines.length>MAX_LINES+1)throw new Error('Input line count exceeds 25,000.');
+  const found=new Set(),payload=[];
+  for(const item of selected){
+    if(!Number.isInteger(item.inputLine)||item.inputLine<1||item.inputLine>sourceLines.length||
+       typeof item.customId!=='string'||!item.customId || found.has(item.customId))
+      throw new Error('Ambiguous failed request mapping; cannot create retry review file.');
+    let row;
+    try {row=JSON.parse(sourceLines[item.inputLine-1].replace(/^\uFEFF/,''));}
+    catch {throw new Error('Input request line could not be re-parsed.');}
+    if(!isObj(row)||row.custom_id!==item.customId || row.method!=='POST'||
+       typeof row.url!=='string'||!KNOWN_ENDPOINTS.has(row.url)||
+       !isObj(row.body)||row.body.stream===true)
+      throw new Error('An original failed request is ambiguous or structurally invalid.');
+    found.add(item.customId);
+    payload.push(JSON.stringify(row));
+  }
+  if(payload.length!==selected.length ||
+     retryCandidateCount(report)!==selected.length)
+    throw new Error('Reconciliation has unresolved duplicate or unknown failure rows.');
+  return {jsonl:payload.join('\n')+'\n',count:payload.length,
+    warning:'Offline manual REVIEW file, NOT an API submission or proof of retry eligibility. Verify actual terminal Batch status, error causes, pricing and duplicate-charge risk before any manual use. Unmatched and unknown rows are deliberately excluded.'};
+}
+
 function quoteCsv(value){
   let s=value===null||value===undefined?'':String(value);
   // Defend CSV/spreadsheet formula injection from user-provided custom_id.
