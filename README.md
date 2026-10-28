@@ -1,13 +1,19 @@
 # LocalDev Bench — 8 free, original developer utilities (EN/한국어)
 
-**Live English:** https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/
+**Live English (Trendbridge):** https://devtools.trendbridged.com/
 
-**Live Korean:** https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/
+**한국어 바로 사용:** https://devtools.trendbridged.com/ko/
 
-Eight working browser-only tools based on common developer tasks—not copied
-from a competitor's protected code, layout or branding. Every input is
-processed in the browser. No login, cookies, analytics, advertising scripts,
-network API requests, account credentials, backend service or npm dependencies.
+**Ad-free educational source demos:** [English](https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/) · [한국어](https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/)
+
+Eight original working browser-only tools based on common developer tasks;
+not copied from another product's proprietary source or branding.
+**All processing remains entirely in the browser.** No account, API
+credentials, file upload, cookies or analytics are required. On the branded
+site, the two informational homepages offer a **single Adsterra 300×250 banner
+only after affirmative, optional visitor consent** with an equal Decline
+choice. **All 16 tool editors are ad-free**, regardless of consent.
+The GitHub Pages code/demo itself has no ads or tracking.
 
 1. **Regex Tester**: JavaScript patterns and flags, named capture groups,
    offsets, match highlighting, replacement preview. Untrusted expressions
@@ -47,20 +53,36 @@ GCHQ CyberChef is a long-running open-source example of demand for
 encoding/transformation workflows: https://github.com/gchq/CyberChef .
 It is not the source of our code.
 
-This free GitHub Pages repo is **not** the original Adsterra-approved
-tools.trendbridged.com domain and does not load Adsterra ads. The
-JSONL/CSV related pages include an honest contextual link to the
-separate original **free** LocalCSV Lab tools whose informational
-pages offer optional ads only if a visitor affirmatively consents;
-separate file editors are ad-free. We don't force redirect, demand
-ad clicks, monetize sensitive JWT content, or request own ads.
+### Where the ads run (and do not run)
 
-The original site's last authenticated Adsterra dashboard showed
-$0.00 balance with 123 period impressions, all Linux/Chrome/KR
-Desktop, potentially dominated by owner QA; this new development
-cannot be called "new revenue". Hosting credit guard prevents new
-Netlify production deploy on the original site until actual available
-credits are sufficient for a safe deployment. No purchases or paid ads.
+- **Branded commercial deployment:** https://devtools.trendbridged.com/ —
+  independently approved Adsterra Publisher site ID **6156887**, with one
+  approved Active 300×250 banner unit **31964651**. The informational
+  **EN/KO homepage only** offers 'Allow optional ads' and 'Decline ads'
+  with equal access to all tools. No ad request is made before consent
+  (or after Decline). The ad provider and partners may process device
+  and browser data if Allow is selected.
+- **16 real tool-editor pages:** remain completely ad-free and browser-local
+  even when the homepage visitor has opted into a banner.
+- **GitHub Pages code/demo:** free and ad-free, not the commercial hosting
+  for the approved Publisher site. The repository's canonical homepage
+  and intended entry point is the branded Trendbridge host.
+- **Existing CSV/JSON service:** https://tools.trendbridged.com/ is a
+  separate already-approved Adsterra website whose informational landing
+  pages also require explicit advertising consent and whose editors remain
+  ad-free.
+
+The production deployment uses Cloudflare Pages Direct Upload; the source
+and ad-free demo remain reproducible from this public repository. The
+Cloudflare commercial build adds only the optional homepage advertising
+UI and the site-specific Publisher-approved banner configuration. We do
+not force redirects, incentivize advertising clicks, spoof visits, embed
+ads in token inspection or file editors, or fabricate search traffic.
+
+**Revenue and audience status:** A new website and advertising approval
+do not prove real human visitors, Google organic clicks, valid advertising
+impressions or earnings. These must be checked in first-party Search
+Console and Adsterra Publisher reports after real users discover the site.
 
 ## Build and test
 
@@ -76,12 +98,16 @@ Source of pure core logic: src/core.mjs
 Reproducible production copy: docs/assets/core.mjs
 Original browser UI: docs/assets/app.mjs
 Regex sandbox: docs/assets/regex-worker.mjs
-Bilingual 18 canonical pages and sitemap in docs/.
-GitHub Pages is published from main:/docs with HTTPS enforced.
+Bilingual 18 source/demo pages and sitemap in docs/. GitHub Pages is
+published from main:/docs as an **ad-free source demo** with HTTPS.
+The independent commercial Cloudflare Pages deployment uses the branded
+domain and publishes its **own branded canonical/hreflang and 18-URL sitemap**.
 
-This project keeps no browser storage and sends no user input
-to server endpoints. GitHub Pages may receive ordinary HTTP
-request metadata to serve static files. The regex Web Worker is
+The underlying tool application stores no user processing inputs and
+sends no user data to server endpoints. The separate consent controller on
+the branded informational homepage can store only an Allow/Decline choice
+locally; it does not store pasted tool data. Hosts may process ordinary
+HTTP metadata when serving files. The regex Web Worker is
 terminated after a short deadline; security-critical production
 regex must still be reviewed. JWT claim decoding never verifies
 issuer, signature, audience or authorization. Test with fictional
