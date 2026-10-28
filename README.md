@@ -1,4 +1,4 @@
-# LocalDev Bench — 8 free, original developer utilities (EN/한국어)
+# LocalDev Bench — 8 core developer tools + free Batch JSONL matcher (EN/한국어)
 
 **Live English (Trendbridge):** https://devtools.trendbridged.com/
 
@@ -37,6 +37,26 @@ The GitHub Pages code/demo itself has no ads or tracking.
    line numbers, type/count summary and locally downloaded JSON array
    only when every nonempty line passes.
 
+## New: Match OpenAI Batch JSONL results by custom_id (free)
+
+**[Live English](https://devtools.trendbridged.com/batch-jsonl-reconcile/)** · **[한국어 무료 도구](https://devtools.trendbridged.com/ko/batch-jsonl-reconcile/)** · [MIT source and tests](extras/batch-jsonl-reconcile/)
+
+OpenAI Batch API result rows can arrive in a different order from their input
+requests, and failed rows can be stored in a separate error file. The additional
+standalone **browser-local Batch JSONL Result Matcher** joins the original input,
+output and error JSONL files by their exact `custom_id` value, catches missing,
+duplicate, unexpected and failed records, and downloads local CSV reviews with
+line numbers. The example demonstrates two successes out of order and one error.
+
+This add-on is offered on the existing **Adsterra-approved commercial-compatible
+Cloudflare site**; it is not an ad-supported GitHub Pages application. **The Batch
+file processing pages themselves contain zero advertising or analytics**, never
+upload file contents, require no account and make no API requests. The separate
+branded EN/KO landing pages retain their optional visitor-consent-only banner.
+No action on this site can confirm an actual OpenAI batch status or current
+Publisher revenue. Follow the [official Batch guide](https://developers.openai.com/api/docs/guides/batch)
+for provider acceptance and job-level status.
+
 Every utility has an independent real EN/KO page, use-case explanation,
 multiple genuine limitations, three FAQ answers, unique title/description,
 canonical and hreflang. Original front-end HTML/CSS, no copycat scraping.
@@ -62,8 +82,8 @@ It is not the source of our code.
   with equal access to all tools. No ad request is made before consent
   (or after Decline). The ad provider and partners may process device
   and browser data if Allow is selected.
-- **16 real tool-editor pages:** remain completely ad-free and browser-local
-  even when the homepage visitor has opted into a banner.
+- **16 original tool-editor pages + 2 Batch reconciliation pages:** remain
+  completely ad-free and browser-local even after opting in on the homepage.
 - **GitHub Pages code/demo:** free and ad-free, not the commercial hosting
   for the approved Publisher site. The repository's canonical homepage
   and intended entry point is the branded Trendbridge host.
@@ -72,10 +92,11 @@ It is not the source of our code.
   pages also require explicit advertising consent and whose editors remain
   ad-free.
 
-The production deployment uses Cloudflare Pages Direct Upload; the source
-and ad-free demo remain reproducible from this public repository. The
-Cloudflare commercial build adds only the optional homepage advertising
-UI and the site-specific Publisher-approved banner configuration. We do
+The production deployment uses Cloudflare Pages Direct Upload; the original
+source and ad-free demo remain reproducible from this public repository. The
+Cloudflare build adds optional homepage advertising, a separately maintained
+MIT Batch JSONL result matcher from `extras/`, and the site-specific
+Publisher-approved banner configuration. We do
 not force redirects, incentivize advertising clicks, spoof visits, embed
 ads in token inspection or file editors, or fabricate search traffic.
 
@@ -101,7 +122,8 @@ Regex sandbox: docs/assets/regex-worker.mjs
 Bilingual 18 source/demo pages and sitemap in docs/. GitHub Pages is
 published from main:/docs as an **ad-free source demo** with HTTPS.
 The independent commercial Cloudflare Pages deployment uses the branded
-domain and publishes its **own branded canonical/hreflang and 18-URL sitemap**.
+domain and publishes its **own branded canonical/hreflang and 20-URL sitemap**
+(18 original pages plus two standalone Batch result reconciliation pages).
 
 The underlying tool application stores no user processing inputs and
 sends no user data to server endpoints. The separate consent controller on
