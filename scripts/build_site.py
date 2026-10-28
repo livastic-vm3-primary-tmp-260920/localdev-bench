@@ -14,6 +14,16 @@ from xml.etree import ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 DOCS=ROOT/"docs"
 SITE="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/"
+GITHUB_DEMO_SITE=SITE
+PRIMARY_BRANDED_SITE="https://devtools.trendbridged.com/"
+
+def canonical_site()->str:
+    """Google: prefer the approved branded primary host over the duplicated
+    ad-free GitHub Pages source demo. Cloudflare override stays self-canonical.
+    No redirect and no changes to browser-private tools or ad consent.
+    """
+    return PRIMARY_BRANDED_SITE if SITE==GITHUB_DEMO_SITE else SITE
+
 ORIGINAL="https://tools.trendbridged.com/"
 RELEASE_DAY="2026-10-28"
 ORDER=["regex-tester","cron-explainer","unix-timestamp","jwt-decoder",
@@ -342,7 +352,7 @@ def page(tool:str,lang:str)->str:
  base=SITE+("ko/" if ko else "")
  cta_url=ORIGINAL+"tools/json-to-csv/" if tool=="jsonl-validator" else ORIGINAL
  cta_text=("JSON 배열을 CSV로 변환" if ko else "Convert JSON arrays to CSV") if tool=="jsonl-validator" else words["relatedLink"]
- canonical=base+tool+"/"
+ canonical=canonical_site()+("ko/" if ko else "")+tool+"/"
  asset="../../assets/"
  links=''.join(f'<a href="{base}{name}/">{esc(D[name][lang]["name"])}</a>' for name in ORDER if name!=tool)
  questions=''.join(f'<details><summary>{esc(question)}</summary><p>{esc(answer)}</p></details>' for question,answer in data["faq"])
@@ -363,9 +373,9 @@ def page(tool:str,lang:str)->str:
 <title>{esc(data["title"])}</title>
 <meta name="description" content="{esc(data["description"])}">
 <link rel="canonical" href="{canonical}">
-<link rel="alternate" hreflang="en" href="{SITE}{tool}/">
-<link rel="alternate" hreflang="ko" href="{SITE}ko/{tool}/">
-<link rel="alternate" hreflang="x-default" href="{SITE}{tool}/">
+<link rel="alternate" hreflang="en" href="{canonical_site()}{tool}/">
+<link rel="alternate" hreflang="ko" href="{canonical_site()}ko/{tool}/">
+<link rel="alternate" hreflang="x-default" href="{canonical_site()}{tool}/">
 <meta name="theme-color" content="#0b1417">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="{asset}style.css">
@@ -444,10 +454,10 @@ def home(lang:str)->str:
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
-<link rel="canonical" href="{base}">
-<link rel="alternate" hreflang="en" href="{SITE}">
-<link rel="alternate" hreflang="ko" href="{SITE}ko/">
-<link rel="alternate" hreflang="x-default" href="{SITE}">
+<link rel="canonical" href="{canonical_site()+("ko/" if ko else "")}">
+<link rel="alternate" hreflang="en" href="{canonical_site()}">
+<link rel="alternate" hreflang="ko" href="{canonical_site()}ko/">
+<link rel="alternate" hreflang="x-default" href="{canonical_site()}">
 <meta name="theme-color" content="#0b1417"><link rel="icon" href="data:,">
 <link rel="stylesheet" href="{"../" if ko else ""}assets/style.css">
 </head><body>

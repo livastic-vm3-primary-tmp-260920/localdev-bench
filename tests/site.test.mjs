@@ -30,6 +30,13 @@ test("all 18 bilingual standalone HTML pages have truly distinct, crawlable SEO 
    assert.equal((html.match(/hreflang="ko"/g)||[]).length,1);
    assert.ok(html.includes('<html lang="'+lang+'">'));
    assert.ok(html.includes('href="'+base+prefix+path+'"'));
+   const canonicalBase="https://devtools.trendbridged.com/";
+   const canonical=canonicalBase+prefix+path;
+   assert.ok(html.includes('rel="canonical" href="'+canonical+'"'),
+     "Demo pages choose real branded canonical: "+prefix+path);
+   assert.ok(html.includes('hreflang="en" href="'+canonicalBase+path+'"'));
+   assert.ok(html.includes('hreflang="ko" href="'+canonicalBase+"ko/"+path+'"'));
+
    assert.ok(html.includes('content="index,follow'));
    assert.ok(html.includes("connect-src 'none'"));
    assert.ok(html.includes("worker-src 'self'"));
