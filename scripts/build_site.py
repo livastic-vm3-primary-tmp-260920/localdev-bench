@@ -340,6 +340,8 @@ def page(tool:str,lang:str)->str:
   }
  }[lang]
  base=SITE+("ko/" if ko else "")
+ cta_url=ORIGINAL+"tools/json-to-csv/" if tool=="jsonl-validator" else ORIGINAL
+ cta_text=("JSON 배열을 CSV로 변환" if ko else "Convert JSON arrays to CSV") if tool=="jsonl-validator" else words["relatedLink"]
  canonical=base+tool+"/"
  asset="../../assets/"
  links=''.join(f'<a href="{base}{name}/">{esc(D[name][lang]["name"])}</a>' for name in ORDER if name!=tool)
@@ -376,6 +378,7 @@ def page(tool:str,lang:str)->str:
   <a href="{base}" class="brand">◇ <span>{esc(words["brand"])}<small>{esc(words["subtitle"])}</small></span></a>
   <nav class="header-nav" aria-label="Navigation">
     <a href="{base}">{esc(words["home"])}</a>
+    <a href="{ORIGINAL}" rel="noopener noreferrer">{"Trendbridge CSV·JSON" if ko else "Trendbridge CSV / JSON"}</a>
     <a href="{SITE}{tool}/" lang="en" {'aria-current="page"' if not ko else ''}>EN</a>
     <a href="{SITE}ko/{tool}/" lang="ko" {'aria-current="page"' if ko else ''}>한국어</a>
   </nav>
@@ -411,7 +414,7 @@ def page(tool:str,lang:str)->str:
  <section class="other-tools"><h2>{esc(words["also"])}</h2><div class="other-links">{links}</div></section>
  <aside class="external-cta">
    <div><h2>{esc(words["related"])}</h2><p>{esc(words["relatedText"])}</p></div>
-   <a href="{ORIGINAL}" rel="noopener noreferrer">{esc(words["relatedLink"])}</a>
+   <a href="{cta_url}" rel="noopener noreferrer">{esc(cta_text)}</a>
  </aside>
 </main>
 <footer class="site-footer"><div class="wrap"><p>{esc(words["footer"])}</p>
@@ -450,7 +453,9 @@ def home(lang:str)->str:
 </head><body>
 <header class="site-header"><div class="wrap header-inner">
 <a class="brand" href="{base}">◇ <span>LocalDev Bench<small>{"개인정보를 존중하는 무료 개발 도구" if ko else "Original privacy-first developer tools"}</small></span></a>
-<nav class="header-nav"><a href="{SITE}" lang="en" {'aria-current="page"' if not ko else ''}>EN</a>
+<nav class="header-nav">
+<a href="{ORIGINAL}" rel="noopener noreferrer">{"Trendbridge CSV·JSON" if ko else "Trendbridge CSV / JSON"}</a>
+<a href="{SITE}" lang="en" {'aria-current="page"' if not ko else ''}>EN</a>
 <a href="{SITE}ko/" lang="ko" {'aria-current="page"' if ko else ''}>한국어</a></nav>
 </div></header>
 <main class="wrap">

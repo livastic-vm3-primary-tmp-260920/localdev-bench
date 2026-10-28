@@ -57,6 +57,30 @@ test("all 18 bilingual standalone HTML pages have truly distinct, crawlable SEO 
  assert.equal(titles.size,18);
 });
 
+test("all 18 visible pages offer voluntary Trendbridge navigation, and JSONL links to related JSON-to-CSV",()=>{
+ const base="https://tools.trendbridged.com/";
+ const ids=["regex-tester","cron-explainer","unix-timestamp","jwt-decoder",
+  "base64-converter","url-encoder","uuid-generator","jsonl-validator"];
+ for(const lang of ["en","ko"]){
+   const prefix=lang==="ko"?"ko/":"";
+   for(const file of ["index.html",...ids.map(x=>x+"/index.html")]){
+     const html=read(prefix+file);
+     assert.ok(html.includes('href="'+base+'" rel="noopener noreferrer"'),
+       "Branded navigation exists: "+prefix+file);
+     assert.ok(!html.includes("window.location.href="));
+     assert.ok(!html.includes("<iframe"));
+   }
+   const jsonl=read(prefix+"jsonl-validator/index.html");
+   assert.ok(jsonl.includes('href="'+base+'tools/json-to-csv/" rel="noopener noreferrer"'));
+   assert.ok(jsonl.includes(lang==="ko"?"JSON 배열을 CSV로 변환":"Convert JSON arrays to CSV"));
+ }
+ // User must select a real link; no JavaScript navigation, ad injection or redirect.
+ const app=read("assets/app.mjs");
+ assert.ok(!app.includes("location.replace"));
+ assert.ok(!app.includes("location.assign"));
+ assert.ok(!app.includes("tools.trendbridged.com"));
+});
+
 test("all relevant source and public core files are synchronized without external runtime dependencies",()=>{
  assert.deepEqual(readFileSync("src/core.mjs"),readFileSync("docs/assets/core.mjs"));
  const ui=read("assets/app.mjs");
