@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Unix 타임스탬프 변환기 — 초·밀리초·한국시간·UTC | LocalDev Bench</title>
+<meta name="description" content="Unix epoch 초·밀리초 변환기. 10자리/13자리 타임스탬프를 한국시간(KST), UTC, 내 시간대로 확인하고 ISO 8601 시간대 포함 시각을 변환합니다.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="unix-timestamp">
+<a class="skip" href="#workspace">가상 예제로 직접 사용해 보세요</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/" class="brand">◇ <span>LocalDev Bench<small>개인정보를 존중하는 독립 개발 도구</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">전체 도구</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/" lang="en" >EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/" lang="ko" aria-current="page">한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">도구 목록</a> / Unix 타임스탬프 변환</nav>
+ <section class="intro">
+  <span class="eyebrow">무료 도구 · 브라우저 내부에서만 실행</span>
+  <h1>Unix 타임스탬프 변환</h1>
+  <p class="lead">로그와 API에서 나온 10자리 초·13자리 밀리초 시각을 한국 시간과 UTC로 확인합니다.</p>
+  <p class="privacy">실제 비밀번호·JWT 액세스 토큰·고객 개인정보는 붙여 넣지 마세요.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="Unix 타임스탬프 변환">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>가상 예제로 직접 사용해 보세요</h2><span class="tag">Epoch·API 디버깅</span></div>
+   <p class="form-note">파일 업로드·쿠키·분석 추적·외부 스크립트 없음. 입력은 브라우저 메모리에서만 처리합니다.</p>
+   <div class="form-fields"><label for="epoch">Unix 정수 타임스탬프</label><input type="text" id="epoch" spellcheck="false" autocomplete="off" placeholder="1761652800"><label for="unit">단위</label><select id="unit"><option value="auto">자동(크기 추정)</option><option value="seconds">초</option><option value="milliseconds">밀리초</option></select><label for="iso">또는 Z/시간대가 포함된 ISO 8601(위 항목 비울 때)</label><input type="text" id="iso" spellcheck="false" autocomplete="off" placeholder="2026-10-28T12:00:00+09:00"><label for="zone">변환 결과 시간대</label><select id="zone"><option value="Asia/Seoul">Seoul / KST</option><option value="UTC">UTC</option><option value="device">내 기기</option></select></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">실행</button>
+  <button type="button" id="sample">가상 예제 불러오기</button>
+  <button type="button" id="clear">입력 지우기</button>
+  <button type="button" id="copy" disabled>결과 복사</button></div>
+  </div>
+  <div class="results" aria-label="결과">
+   <div class="section-top"><h2>결과</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">준비됐습니다. 테스트 데이터를 입력하세요.</p>
+   <pre id="result" tabindex="0" aria-label="결과"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>어떤 문제를 해결하나요?</h2><p>Python 서버의 Unix 초와 JavaScript Date의 밀리초를 혼동하면 날짜가 수십 년 차이 날 수 있습니다. 입력 단위, ISO UTC, 초·밀리초 정수값과 한국·선택 시간대를 한 번에 보여줍니다.</p></article>
+  <article><h2>사용 방법</h2><p>타임스탬프 정수와 단위를 입력하거나 Z·+09:00 등이 붙은 ISO 시각을 입력합니다. 자동 단위 판별은 크기로 추정하므로 예전 날짜나 특이한 값에는 초/밀리초 단위를 직접 지정하세요.</p></article>
+  <article><h2>지원 범위와 주의사항</h2><p>브라우저 Date가 지원하는 범위를 벗어난 값은 거부합니다. 기기 시계나 서버의 시간대 설정이 잘못된 경우 실제 이벤트 시간을 뜻하지 않을 수 있으므로 원본 로그와 비교하세요.</p></article>
+ </div>
+ <section class="faq"><h2>자주 묻는 질문</h2><details><summary>10자리와 13자리 타임스탬프 차이는 뭔가요?</summary><p>일반적으로 현재 시점의 10자리는 초, 13자리는 밀리초이지만 확정 규칙은 아닙니다. 확실한 단위를 직접 선택하세요.</p></details><details><summary>UTC와 한국시간을 동시에 보여주나요?</summary><p>예. 하나의 절대 시각을 UTC와 Asia/Seoul, 선택한 기기 시간대로 각각 변환합니다.</p></details><details><summary>시간대가 없는 ISO 날짜를 입력할 수 있나요?</summary><p>혼동을 막기 위해 Z 또는 +09:00처럼 명시적인 오프셋이 있어야 변환합니다.</p></details></section>
+ <section class="other-tools"><h2>다른 독립 무료 개발자 도구</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/regex-tester/">JavaScript 정규식 테스트</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">5필드 Cron 실행 시각 계산</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/">JWT 헤더·페이로드 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/base64-converter/">Base64 인코딩·디코딩</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/">URL 인코딩·디코딩·쿼리 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/">UUID v4 랜덤 생성기</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jsonl-validator/">JSONL·NDJSON 파일 검사</a></div></section>
+ <aside class="external-cta">
+   <div><h2>관련 무료 CSV·JSON 도구</h2><p>스프레드시트 CSV와 JSON 변환이 필요하면 LocalCSV Lab에서 이용할 수 있습니다. 정보 페이지의 광고는 명시적으로 동의했을 때만 선택적으로 표시되고 파일 편집기는 무광고입니다.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">무료 CSV·JSON 도구 열기</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>무료·독립·자체 개발 도구이며 이 사이트에는 분석 추적이나 광고가 없습니다. 호스팅에서는 파일 제공에 필요한 기본 HTTP 정보가 처리될 수 있습니다.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">공개 소스코드</a></p></div></footer>
+</body></html>

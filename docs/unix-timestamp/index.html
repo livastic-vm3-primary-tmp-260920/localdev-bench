@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Unix Timestamp Converter — Seconds, Milliseconds, Seoul &amp; UTC | LocalDev Bench</title>
+<meta name="description" content="Free Unix epoch converter. Paste a seconds or milliseconds timestamp, convert to UTC, Seoul or local time, and convert explicit-offset ISO 8601 dates back to epoch values.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="unix-timestamp">
+<a class="skip" href="#workspace">Try it with a fictional sample</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/" class="brand">◇ <span>LocalDev Bench<small>Original privacy-first developer tools</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">All tools</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/" lang="en" aria-current="page">EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/" lang="ko" >한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">Back to tools</a> / Unix Timestamp Converter</nav>
+ <section class="intro">
+  <span class="eyebrow">Free tool · Runs entirely in your browser</span>
+  <h1>Unix Timestamp Converter</h1>
+  <p class="lead">Paste a 10-digit epoch in seconds or a 13-digit millisecond timestamp and see the same moment across time zones.</p>
+  <p class="privacy">Never paste production passwords, live JWT access tokens or private customer records.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="Unix Timestamp Converter">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>Try it with a fictional sample</h2><span class="tag">Epoch time &amp; debugging</span></div>
+   <p class="form-note">No uploads, cookies, tracking or third-party scripts. Your input stays in browser memory.</p>
+   <div class="form-fields"><label for="epoch">Unix integer timestamp (preferred)</label><input type="text" id="epoch" spellcheck="false" autocomplete="off" placeholder="1761652800"><label for="unit">Unit</label><select id="unit"><option value="auto">Auto (magnitude guess)</option><option value="seconds">Seconds</option><option value="milliseconds">Milliseconds</option></select><label for="iso">Or ISO 8601 with Z / offset (if epoch empty)</label><input type="text" id="iso" spellcheck="false" autocomplete="off" placeholder="2026-10-28T12:00:00+09:00"><label for="zone">Show local result in</label><select id="zone"><option value="Asia/Seoul">Seoul / KST</option><option value="UTC">UTC</option><option value="device">My device</option></select></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">Run tool</button>
+  <button type="button" id="sample">Load fictional example</button>
+  <button type="button" id="clear">Clear inputs</button>
+  <button type="button" id="copy" disabled>Copy output</button></div>
+  </div>
+  <div class="results" aria-label="Output">
+   <div class="section-top"><h2>Output</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">Ready. Enter a test value.</p>
+   <pre id="result" tabindex="0" aria-label="Output"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>What problem does this solve?</h2><p>APIs, log lines, JSON responses and JavaScript Date values use different timestamp units. Confusing seconds and milliseconds changes a date by decades. The converter displays the detected unit, ISO UTC date, both integer epochs and human readable timezone versions.</p></article>
+  <article><h2>How to use it</h2><p>Enter an integer epoch and choose Auto, Seconds or Milliseconds. Auto uses magnitude rather than digit count and can guess wrong for historical or unusual dates: use an explicit unit when known. Alternatively enter a full ISO timestamp with Z or an explicit offset.</p></article>
+  <article><h2>Scope and limitations</h2><p>Conversion is deterministic but your device&#x27;s clock/timezone and origin system&#x27;s date semantics may differ. Epoch ranges outside JavaScript Date are rejected. DST gaps, historical calendars and server-side time libraries require additional verification.</p></article>
+ </div>
+ <section class="faq"><h2>Common questions</h2><details><summary>What is the difference between 10 and 13 digits?</summary><p>A 10-digit contemporary epoch usually represents seconds; 13-digit values usually represent milliseconds. This is only a convention, so choose the unit explicitly for ambiguous input.</p></details><details><summary>Does this convert between KST and UTC?</summary><p>Yes. It shows absolute ISO UTC plus Korean standard time and a selected zone.</p></details><details><summary>Can I enter a date without its timezone?</summary><p>For converting ISO to epoch, no. Provide Z or an explicit offset such as +09:00 to avoid guessing which instant you intended.</p></details></section>
+ <section class="other-tools"><h2>Other independent free developer tools</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/regex-tester/">JavaScript Regex Tester</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">5-Field Cron Schedule Preview</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/">JWT Header &amp; Payload Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/base64-converter/">UTF-8 Base64 Encoder &amp; Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/">URL Encoder, Decoder &amp; Query Inspector</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/">UUID v4 Generator</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jsonl-validator/">JSONL / NDJSON Validator</a></div></section>
+ <aside class="external-cta">
+   <div><h2>Related free CSV and JSON tools</h2><p>For actual spreadsheet CSV/JSON transformation, LocalCSV Lab offers separate free, privacy-first tools. Informational pages show optional ads only after explicit opt-in; the file editors are ad-free.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">Open CSV/JSON tools</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>Free, original and independent. No analytics or advertising on this site. Hosting may log ordinary HTTP metadata for file delivery. Test with fictional data.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">Source code</a></p></div></footer>
+</body></html>

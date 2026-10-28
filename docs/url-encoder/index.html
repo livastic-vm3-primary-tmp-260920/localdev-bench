@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>URL Encode/Decode &amp; Query String Inspector — LocalDev Bench</title>
+<meta name="description" content="Encode or decode URL query-component text and inspect URL path, host, fragment and UTM parameters in your browser. No requests to the inspected URL.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="url-encoder">
+<a class="skip" href="#workspace">Try it with a fictional sample</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/" class="brand">◇ <span>LocalDev Bench<small>Original privacy-first developer tools</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">All tools</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/" lang="en" aria-current="page">EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/" lang="ko" >한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">Back to tools</a> / URL Encoder, Decoder &amp; Query Inspector</nav>
+ <section class="intro">
+  <span class="eyebrow">Free tool · Runs entirely in your browser</span>
+  <h1>URL Encoder, Decoder &amp; Query Inspector</h1>
+  <p class="lead">Check exactly what an API parameter or marketing UTM query string contains without opening that link.</p>
+  <p class="privacy">Never paste production passwords, live JWT access tokens or private customer records.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="URL Encoder, Decoder &amp; Query Inspector">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>Try it with a fictional sample</h2><span class="tag">Web request debugging</span></div>
+   <p class="form-note">No uploads, cookies, tracking or third-party scripts. Your input stays in browser memory.</p>
+   <div class="form-fields"><label for="mode">Action</label><select id="mode"><option value="encode">Encode query component</option><option value="decode">Decode percent-encoded component</option><option value="inspect">Inspect URL without opening it</option></select><label for="source">URL or component text</label><textarea id="source" rows="7" spellcheck="false" ></textarea></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">Run tool</button>
+  <button type="button" id="sample">Load fictional example</button>
+  <button type="button" id="clear">Clear inputs</button>
+  <button type="button" id="copy" disabled>Copy output</button></div>
+  </div>
+  <div class="results" aria-label="Output">
+   <div class="section-top"><h2>Output</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">Ready. Enter a test value.</p>
+   <pre id="result" tabindex="0" aria-label="Output"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>What problem does this solve?</h2><p>A space, percent sign or double-encoded query value can silently break links and webhook parameters. This tool supports component encoding, percent/plus decoding and readable query parameter inspection with duplicate keys preserved.</p></article>
+  <article><h2>How to use it</h2><p>For a single query value choose Encode; for a percent-encoded value choose Decode. Inspect takes a complete http(s) URL and splits protocol, hostname, path, fragment and every query key/value without contacting the destination.</p></article>
+  <article><h2>Scope and limitations</h2><p>URLs are treated as text. Inspection is never a network test of the destination, redirect or tracking endpoint. A copied URL may still contain personal information or tokens; avoid sharing such links.</p></article>
+ </div>
+ <section class="faq"><h2>Common questions</h2><details><summary>What is the difference between encodeURI and encodeURIComponent?</summary><p>Component encoding escapes reserved separators such as ampersand, equals and question mark, making it suitable for an individual query value.</p></details><details><summary>Does the inspector click or fetch the URL?</summary><p>No. It parses the URL locally without navigating to it or resolving its host.</p></details><details><summary>Can I inspect duplicate UTM or query keys?</summary><p>Yes. The query list retains duplicate keys in order so you can spot accidental repeated parameters.</p></details></section>
+ <section class="other-tools"><h2>Other independent free developer tools</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/regex-tester/">JavaScript Regex Tester</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">5-Field Cron Schedule Preview</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">Unix Timestamp Converter</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/">JWT Header &amp; Payload Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/base64-converter/">UTF-8 Base64 Encoder &amp; Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/">UUID v4 Generator</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jsonl-validator/">JSONL / NDJSON Validator</a></div></section>
+ <aside class="external-cta">
+   <div><h2>Related free CSV and JSON tools</h2><p>For actual spreadsheet CSV/JSON transformation, LocalCSV Lab offers separate free, privacy-first tools. Informational pages show optional ads only after explicit opt-in; the file editors are ad-free.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">Open CSV/JSON tools</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>Free, original and independent. No analytics or advertising on this site. Hosting may log ordinary HTTP metadata for file delivery. Test with fictional data.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">Source code</a></p></div></footer>
+</body></html>

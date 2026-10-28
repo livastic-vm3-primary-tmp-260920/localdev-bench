@@ -1,0 +1,16 @@
+{
+  "name": "localdev-bench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Eight independent, original browser-local developer tools with bilingual search pages.",
+  "scripts": {
+    "build": "python3 scripts/build_site.py",
+    "check": "python3 scripts/build_site.py --check",
+    "test": "node --test",
+    "test:browser": "node scripts/browser-smoke.mjs"
+  },
+  "engines": {"node": ">=22"},
+  "author": "LocalCSV Lab contributors",
+  "license": "MIT"
+}

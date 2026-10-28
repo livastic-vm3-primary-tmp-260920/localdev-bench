@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Cron 표현식 계산기 — UTC·한국 시간 다음 실행 5회 | LocalDev Bench</title>
+<meta name="description" content="무료 5필드 Unix cron 계산기. 분·시·일·월·요일 표현식, */15 간격, 범위, 다음 실행 시각 5개를 UTC 또는 내 기기 시간으로 확인하세요.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="cron-explainer">
+<a class="skip" href="#workspace">가상 예제로 직접 사용해 보세요</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/" class="brand">◇ <span>LocalDev Bench<small>개인정보를 존중하는 독립 개발 도구</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">전체 도구</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/" lang="en" >EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/" lang="ko" aria-current="page">한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">도구 목록</a> / 5필드 Cron 실행 시각 계산</nav>
+ <section class="intro">
+  <span class="eyebrow">무료 도구 · 브라우저 내부에서만 실행</span>
+  <h1>5필드 Cron 실행 시각 계산</h1>
+  <p class="lead">예약 작업이 한국 시각인지 UTC인지 헷갈릴 때 실제 다음 실행 시각을 확인하세요.</p>
+  <p class="privacy">실제 비밀번호·JWT 액세스 토큰·고객 개인정보는 붙여 넣지 마세요.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="5필드 Cron 실행 시각 계산">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>가상 예제로 직접 사용해 보세요</h2><span class="tag">예약 작업·시간대</span></div>
+   <p class="form-note">파일 업로드·쿠키·분석 추적·외부 스크립트 없음. 입력은 브라우저 메모리에서만 처리합니다.</p>
+   <div class="form-fields"><label for="expression">5필드 Cron 표현식</label><input type="text" id="expression" spellcheck="false" autocomplete="off" placeholder="*/15 9-17 * * 1-5"><label for="zone">해석 시간대</label><select id="zone"><option value="UTC">UTC</option><option value="local">기기 현지 시간</option></select></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">실행</button>
+  <button type="button" id="sample">가상 예제 불러오기</button>
+  <button type="button" id="clear">입력 지우기</button>
+  <button type="button" id="copy" disabled>결과 복사</button></div>
+  </div>
+  <div class="results" aria-label="결과">
+   <div class="section-top"><h2>결과</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">준비됐습니다. 테스트 데이터를 입력하세요.</p>
+   <pre id="result" tabindex="0" aria-label="결과"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>어떤 문제를 해결하나요?</h2><p>UTC와 로컬 시간대를 혼동하면 상품 가격 동기화나 백업 작업이 잘못된 시간에 실행됩니다. 표준 5필드 cron을 계산해 실제 앞으로의 날짜 5개를 보여주고, 일자·요일 동시 지정의 규칙도 설명합니다.</p></article>
+  <article><h2>사용 방법</h2><p>분, 시, 일, 월, 요일 순서로 5필드를 입력합니다. 예: 0 9 * * 1은 월요일 9시, */15 9-17 * * 1-5는 평일 근무 시간대 15분 간격입니다. 서버가 UTC 기준이라면 UTC를 선택해야 합니다.</p></article>
+  <article><h2>지원 범위와 주의사항</h2><p>표준 숫자 Unix cron의 *, 간격, 쉼표 목록, 범위를 지원합니다. Quartz 초 단위 필드나 AWS EventBridge 표현식은 지원하지 않습니다. 실행 가능 날짜만 계산할 뿐 서버가 실제 실행된다고 보장하지 않습니다.</p></article>
+ </div>
+ <section class="faq"><h2>자주 묻는 질문</h2><details><summary>AWS EventBridge와 Quartz도 지원하나요?</summary><p>아니요. 필드 개수·요일 규칙이 달라 표준 5필드 Unix crontab으로 제한했습니다.</p></details><details><summary>일자와 요일을 함께 지정하면요?</summary><p>일반적인 Vixie crontab처럼 둘 중 하나만 맞아도 실행 후보로 판단합니다. 플랫폼별 규칙을 확인하세요.</p></details><details><summary>다음 실행 시각이 실제 실행을 보장하나요?</summary><p>아니요. 서버 정지·워크플로 비활성화·일광절약시간 설정으로 실제 실행 여부는 달라집니다.</p></details></section>
+ <section class="other-tools"><h2>다른 독립 무료 개발자 도구</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/regex-tester/">JavaScript 정규식 테스트</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">Unix 타임스탬프 변환</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/">JWT 헤더·페이로드 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/base64-converter/">Base64 인코딩·디코딩</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/">URL 인코딩·디코딩·쿼리 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/">UUID v4 랜덤 생성기</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jsonl-validator/">JSONL·NDJSON 파일 검사</a></div></section>
+ <aside class="external-cta">
+   <div><h2>관련 무료 CSV·JSON 도구</h2><p>스프레드시트 CSV와 JSON 변환이 필요하면 LocalCSV Lab에서 이용할 수 있습니다. 정보 페이지의 광고는 명시적으로 동의했을 때만 선택적으로 표시되고 파일 편집기는 무광고입니다.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">무료 CSV·JSON 도구 열기</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>무료·독립·자체 개발 도구이며 이 사이트에는 분석 추적이나 광고가 없습니다. 호스팅에서는 파일 제공에 필요한 기본 HTTP 정보가 처리될 수 있습니다.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">공개 소스코드</a></p></div></footer>
+</body></html>

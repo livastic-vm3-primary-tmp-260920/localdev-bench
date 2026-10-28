@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>JWT 디코더 — 헤더·페이로드·만료 클레임 확인(서명 미검증) | LocalDev Bench</title>
+<meta name="description" content="JWT 테스트 토큰의 헤더·페이로드·exp/nbf 필드를 브라우저에서 확인하세요. 서명 검증이나 인증을 수행하지 않으며 실제 액세스 토큰 입력은 권장하지 않습니다.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="jwt-decoder">
+<a class="skip" href="#workspace">가상 예제로 직접 사용해 보세요</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/" class="brand">◇ <span>LocalDev Bench<small>개인정보를 존중하는 독립 개발 도구</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">전체 도구</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/" lang="en" >EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/" lang="ko" aria-current="page">한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">도구 목록</a> / JWT 헤더·페이로드 분석</nav>
+ <section class="intro">
+  <span class="eyebrow">무료 도구 · 브라우저 내부에서만 실행</span>
+  <h1>JWT 헤더·페이로드 분석</h1>
+  <p class="lead">JWT 안의 JSON 필드를 이해하기 위한 로컬 분석 도구입니다. 실제 인증 성공 여부는 확인하지 않습니다.</p>
+  <p class="privacy">실제 비밀번호·JWT 액세스 토큰·고객 개인정보는 붙여 넣지 마세요.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="JWT 헤더·페이로드 분석">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>가상 예제로 직접 사용해 보세요</h2><span class="tag">토큰 구조 분석</span></div>
+   <p class="form-note">파일 업로드·쿠키·분석 추적·외부 스크립트 없음. 입력은 브라우저 메모리에서만 처리합니다.</p>
+   <div class="form-fields"><label for="source">가상 3부분 JWT(실제 인증 토큰 금지)</label><textarea id="source" rows="7" spellcheck="false" ></textarea></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">실행</button>
+  <button type="button" id="sample">가상 예제 불러오기</button>
+  <button type="button" id="clear">입력 지우기</button>
+  <button type="button" id="copy" disabled>결과 복사</button></div>
+  </div>
+  <div class="results" aria-label="결과">
+   <div class="section-top"><h2>결과</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">준비됐습니다. 테스트 데이터를 입력하세요.</p>
+   <pre id="result" tabindex="0" aria-label="결과"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>어떤 문제를 해결하나요?</h2><p>개발자는 alg, typ, sub, iss, exp와 nbf 같은 필드를 살펴볼 때가 많습니다. 하지만 토큰 내용이 디코딩된다고 서명이 올바르거나 접근 권한이 확인된 것은 아닙니다.</p></article>
+  <article><h2>사용 방법</h2><p>가상 예제를 사용하거나 폐기 가능한 테스트 JWT 세 조각을 입력하세요. 헤더·페이로드를 base64url에서 JSON으로 읽고 만료·사용 시작 클레임을 기기 시계와 비교합니다. 서명은 검사하지 않습니다.</p></article>
+  <article><h2>지원 범위와 주의사항</h2><p>실제 액세스 토큰, 갱신 토큰 또는 타인 인증 정보를 웹사이트에 붙여 넣지 마세요. 이 서비스는 서버 요청이 없지만 JWT의 클레임 내용은 검증되지 않은 값으로 취급해야 합니다.</p></article>
+ </div>
+ <section class="faq"><h2>자주 묻는 질문</h2><details><summary>디코딩되면 유효한 JWT인가요?</summary><p>아니요. alg 서명, 발급자, 대상, 권한 또는 폐기 여부를 전혀 검증하지 않습니다.</p></details><details><summary>OpenAI나 Shopify 계정에 접속하나요?</summary><p>아니요. 어떤 토큰도 API 호출에 사용하지 않습니다. 가상 테스트 값만 사용하세요.</p></details><details><summary>exp가 지나면 반드시 로그아웃되나요?</summary><p>보장되지 않습니다. exp는 검증되지 않은 데이터이고 서버는 해당 시각 이전에도 토큰을 거부할 수 있습니다.</p></details></section>
+ <section class="other-tools"><h2>다른 독립 무료 개발자 도구</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/regex-tester/">JavaScript 정규식 테스트</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">5필드 Cron 실행 시각 계산</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">Unix 타임스탬프 변환</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/base64-converter/">Base64 인코딩·디코딩</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/">URL 인코딩·디코딩·쿼리 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/">UUID v4 랜덤 생성기</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jsonl-validator/">JSONL·NDJSON 파일 검사</a></div></section>
+ <aside class="external-cta">
+   <div><h2>관련 무료 CSV·JSON 도구</h2><p>스프레드시트 CSV와 JSON 변환이 필요하면 LocalCSV Lab에서 이용할 수 있습니다. 정보 페이지의 광고는 명시적으로 동의했을 때만 선택적으로 표시되고 파일 편집기는 무광고입니다.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">무료 CSV·JSON 도구 열기</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>무료·독립·자체 개발 도구이며 이 사이트에는 분석 추적이나 광고가 없습니다. 호스팅에서는 파일 제공에 필요한 기본 HTTP 정보가 처리될 수 있습니다.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">공개 소스코드</a></p></div></footer>
+</body></html>

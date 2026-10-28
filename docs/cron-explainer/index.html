@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Cron Expression Tester — Next 5 Runs in UTC or Local Time | LocalDev Bench</title>
+<meta name="description" content="Preview the next five occurrences for standard 5-field Unix crontab expressions. Compare UTC and local timezone, ranges, lists, steps and weekday behavior. No login.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="cron-explainer">
+<a class="skip" href="#workspace">Try it with a fictional sample</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/" class="brand">◇ <span>LocalDev Bench<small>Original privacy-first developer tools</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">All tools</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/cron-explainer/" lang="en" aria-current="page">EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/" lang="ko" >한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/">Back to tools</a> / 5-Field Cron Schedule Preview</nav>
+ <section class="intro">
+  <span class="eyebrow">Free tool · Runs entirely in your browser</span>
+  <h1>5-Field Cron Schedule Preview</h1>
+  <p class="lead">Check whether a server job will run on Monday at 09:00 UTC or local time before you put it into production.</p>
+  <p class="privacy">Never paste production passwords, live JWT access tokens or private customer records.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="5-Field Cron Schedule Preview">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>Try it with a fictional sample</h2><span class="tag">Scheduling &amp; timezone</span></div>
+   <p class="form-note">No uploads, cookies, tracking or third-party scripts. Your input stays in browser memory.</p>
+   <div class="form-fields"><label for="expression">5-field cron expression</label><input type="text" id="expression" spellcheck="false" autocomplete="off" placeholder="*/15 9-17 * * 1-5"><label for="zone">Interpretation zone</label><select id="zone"><option value="UTC">UTC</option><option value="local">Device local time</option></select></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">Run tool</button>
+  <button type="button" id="sample">Load fictional example</button>
+  <button type="button" id="clear">Clear inputs</button>
+  <button type="button" id="copy" disabled>Copy output</button></div>
+  </div>
+  <div class="results" aria-label="Output">
+   <div class="section-top"><h2>Output</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">Ready. Enter a test value.</p>
+   <pre id="result" tabindex="0" aria-label="Output"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>What problem does this solve?</h2><p>A single timezone assumption can run a data import at the wrong hour. This tool calculates actual upcoming dates for standard five-field Unix cron schedules in either UTC or your device-local timezone, including day-of-month and day-of-week rules.</p></article>
+  <article><h2>How to use it</h2><p>Enter minute, hour, day of month, month and weekday. Examples: 0 9 * * 1 (Monday at 09:00), */15 9-17 * * 1-5 (weekday quarter-hours). Select UTC for most hosted schedulers if the service documents UTC, or local when your runtime uses local time.</p></article>
+  <article><h2>Scope and limitations</h2><p>Supports standard numeric Unix cron: asterisk, steps, lists and ranges. It does not accept Quartz seconds, ? or AWS EventBridge syntax. Preview searches up to 370 days; confirm your actual scheduler&#x27;s timezone, DST interpretation and day-field semantics.</p></article>
+ </div>
+ <section class="faq"><h2>Common questions</h2><details><summary>Is this the same as AWS EventBridge or Quartz?</summary><p>No. Those cron dialects use different numbers of fields and day-of-week rules. This is standard five-field Unix cron only.</p></details><details><summary>What if both day-of-month and weekday are specified?</summary><p>This tool follows the common Vixie crontab OR rule when both day fields are restricted; some schedulers use different behavior.</p></details><details><summary>Are these guaranteed future executions?</summary><p>No. They are matching calendar times. A paused server, disabled workflow, DST policy or scheduler configuration can prevent a job.</p></details></section>
+ <section class="other-tools"><h2>Other independent free developer tools</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/regex-tester/">JavaScript Regex Tester</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/unix-timestamp/">Unix Timestamp Converter</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jwt-decoder/">JWT Header &amp; Payload Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/base64-converter/">UTF-8 Base64 Encoder &amp; Decoder</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/url-encoder/">URL Encoder, Decoder &amp; Query Inspector</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/">UUID v4 Generator</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/jsonl-validator/">JSONL / NDJSON Validator</a></div></section>
+ <aside class="external-cta">
+   <div><h2>Related free CSV and JSON tools</h2><p>For actual spreadsheet CSV/JSON transformation, LocalCSV Lab offers separate free, privacy-first tools. Informational pages show optional ads only after explicit opt-in; the file editors are ad-free.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">Open CSV/JSON tools</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>Free, original and independent. No analytics or advertising on this site. Hosting may log ordinary HTTP metadata for file delivery. Test with fictional data.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">Source code</a></p></div></footer>
+</body></html>

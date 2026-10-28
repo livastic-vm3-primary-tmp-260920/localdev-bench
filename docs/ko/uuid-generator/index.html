@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>UUID v4 생성기 — 안전한 랜덤 ID 최대 100개 | LocalDev Bench</title>
+<meta name="description" content="브라우저 crypto.randomUUID로 UUID v4를 1~100개 생성합니다. 테스트 고유 ID·요청 추적용, 회원가입·저장·서버 통신 없음.">
+<link rel="canonical" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/">
+<link rel="alternate" hreflang="en" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/">
+<link rel="alternate" hreflang="ko" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/">
+<link rel="alternate" hreflang="x-default" href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/">
+<meta name="theme-color" content="#0b1417">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="module" src="../../assets/app.mjs"></script>
+</head>
+<body data-tool="uuid-generator">
+<a class="skip" href="#workspace">가상 예제로 직접 사용해 보세요</a>
+<header class="site-header">
+ <div class="wrap header-inner">
+  <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/" class="brand">◇ <span>LocalDev Bench<small>개인정보를 존중하는 독립 개발 도구</small></span></a>
+  <nav class="header-nav" aria-label="Navigation">
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">전체 도구</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/uuid-generator/" lang="en" >EN</a>
+    <a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/uuid-generator/" lang="ko" aria-current="page">한국어</a>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <nav class="breadcrumbs"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/">도구 목록</a> / UUID v4 랜덤 생성기</nav>
+ <section class="intro">
+  <span class="eyebrow">무료 도구 · 브라우저 내부에서만 실행</span>
+  <h1>UUID v4 랜덤 생성기</h1>
+  <p class="lead">개발·테스트에 사용할 새 UUID v4 식별자를 1~100개 생성하고 복사하세요.</p>
+  <p class="privacy">실제 비밀번호·JWT 액세스 토큰·고객 개인정보는 붙여 넣지 마세요.</p>
+ </section>
+ <section class="work-grid" id="workspace" aria-label="UUID v4 랜덤 생성기">
+  <div class="tool-workspace">
+   <div class="section-top"><h2>가상 예제로 직접 사용해 보세요</h2><span class="tag">테스트 데이터·식별자</span></div>
+   <p class="form-note">파일 업로드·쿠키·분석 추적·외부 스크립트 없음. 입력은 브라우저 메모리에서만 처리합니다.</p>
+   <div class="form-fields"><label for="count">UUID v4 생성 개수(1–100)</label><input type="number" id="count" min="1" max="100" value="5" ></div>
+   <div class="actions">
+  <button type="button" id="run" class="primary">실행</button>
+  <button type="button" id="sample">가상 예제 불러오기</button>
+  <button type="button" id="clear">입력 지우기</button>
+  <button type="button" id="copy" disabled>결과 복사</button></div>
+  </div>
+  <div class="results" aria-label="결과">
+   <div class="section-top"><h2>결과</h2><span class="tag">LOCAL</span></div>
+   <p class="status" id="status" data-kind="info" role="status" aria-live="polite">준비됐습니다. 테스트 데이터를 입력하세요.</p>
+   <pre id="result" tabindex="0" aria-label="결과"></pre>
+  </div>
+ </section>
+ <div class="editorial">
+  <article><h2>어떤 문제를 해결하나요?</h2><p>규칙 없이 만든 테스트 ID는 형식이 틀리거나 충돌할 수 있습니다. UUID v4는 표준 버전·변형 비트와 랜덤 값이 있으며 브라우저의 암호학적 난수원을 사용합니다.</p></article>
+  <article><h2>사용 방법</h2><p>필요한 개수를 1~100 사이로 고르고 실행하면 한 줄에 하나씩 새 UUID가 생성됩니다. 가상 데이터, 요청 로그 추적, 테스트 레코드에 활용하세요.</p></article>
+  <article><h2>지원 범위와 주의사항</h2><p>UUID는 비밀번호나 액세스 토큰이 아닙니다. 충돌 가능성은 매우 작지만 0이 아니므로 실제 DB에서는 고유 제약 조건을 따로 유지하세요.</p></article>
+ </div>
+ <section class="faq"><h2>자주 묻는 질문</h2><details><summary>UUID가 100% 영원히 유일한가요?</summary><p>아니요. 일반적인 규모에서 충돌 가능성은 극히 낮지만 DB의 고유키 검증이 필요합니다.</p></details><details><summary>비밀번호로 사용해도 되나요?</summary><p>안 됩니다. UUID를 인증 비밀이나 암호화 키로 사용하면 안 됩니다.</p></details><details><summary>생성된 값은 서버에 저장되나요?</summary><p>아니요. 브라우저 메모리에서 생성하고 현재 화면에만 보여줍니다.</p></details></section>
+ <section class="other-tools"><h2>다른 독립 무료 개발자 도구</h2><div class="other-links"><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/regex-tester/">JavaScript 정규식 테스트</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/cron-explainer/">5필드 Cron 실행 시각 계산</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/unix-timestamp/">Unix 타임스탬프 변환</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jwt-decoder/">JWT 헤더·페이로드 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/base64-converter/">Base64 인코딩·디코딩</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/url-encoder/">URL 인코딩·디코딩·쿼리 분석</a><a href="https://livastic-vm3-primary-tmp-260920.github.io/localdev-bench/ko/jsonl-validator/">JSONL·NDJSON 파일 검사</a></div></section>
+ <aside class="external-cta">
+   <div><h2>관련 무료 CSV·JSON 도구</h2><p>스프레드시트 CSV와 JSON 변환이 필요하면 LocalCSV Lab에서 이용할 수 있습니다. 정보 페이지의 광고는 명시적으로 동의했을 때만 선택적으로 표시되고 파일 편집기는 무광고입니다.</p></div>
+   <a href="https://tools.trendbridged.com/" rel="noopener noreferrer">무료 CSV·JSON 도구 열기</a>
+ </aside>
+</main>
+<footer class="site-footer"><div class="wrap"><p>무료·독립·자체 개발 도구이며 이 사이트에는 분석 추적이나 광고가 없습니다. 호스팅에서는 파일 제공에 필요한 기본 HTTP 정보가 처리될 수 있습니다.</p>
+ <p><a href="https://github.com/livastic-vm3-primary-tmp-260920/localdev-bench" rel="noopener noreferrer">공개 소스코드</a></p></div></footer>
+</body></html>
